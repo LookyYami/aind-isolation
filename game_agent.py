@@ -34,6 +34,7 @@ def custom_score(game, player):
     float
         The heuristic value of the current game state to the specified player.
     """
+    
     # TODO: finish this function!
     raise NotImplementedError
 
@@ -170,6 +171,30 @@ class MinimaxPlayer(IsolationPlayer):
         # Return the best move from the last completed search iteration
         return best_move
 
+    def MaxValue(self, game):
+        if game.utility(game.get_opponent(game.active_player)) != 0:
+            return game.utility(game.get_opponent(game.active_player))
+        moves = game.get_legal_moves()
+        best_score = float('-inf')
+        for move in moves:
+            clone = game.forecast_move(move)
+            score = self.MaxValue(clone)
+            if score > best_score:
+                best_score = score
+            return best_score
+
+    def MinValue(self, game):
+        if game.utility(game.active_player) != 0:
+            return game.utility(game.active_player)
+        moves = game.get_legal_moves()
+        best_score = float('inf')
+        for move in moves:
+            clone = game.forecast_move(move)
+            score = self.MaxValue(clone)
+            if score < best_score:
+                best_score = score
+            return best_score
+
     def minimax(self, game, depth):
         """Implement depth-limited minimax search algorithm as described in
         the lectures.
@@ -212,8 +237,17 @@ class MinimaxPlayer(IsolationPlayer):
         if self.time_left() < self.TIMER_THRESHOLD:
             raise SearchTimeout()
 
-        # TODO: finish this function!
-        raise NotImplementedError
+        moves = game.get_legal_moves()
+        best_move = (-1,-1)
+        best_score = float('-inf')
+        for move in moves:
+            clone = game.forecast_move(move)
+            score = self.MinValue(clone)
+            if score > best_score:
+                best_move = move
+                best_score = score
+
+        return best_move
 
 
 class AlphaBetaPlayer(IsolationPlayer):
