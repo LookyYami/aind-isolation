@@ -246,12 +246,6 @@ class MinimaxPlayer(IsolationPlayer):
         if self.time_left() < self.TIMER_THRESHOLD:
             raise SearchTimeout()
 
-        if depth == 0 or game.utility(game.active_player) != 0:
-            return game.utility(game.active_player)
-        best_move = float('-inf')
-        for move in game.get_legal_moves():
-            best_move =
-
         moves = game.get_legal_moves()
         best_move = moves[0] if len(moves) > 0 else (-1,-1)
         best_score = float('-inf')

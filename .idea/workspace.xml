@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e911606e-7191-4bf8-abd5-81773eb317cd" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-21564.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-21579.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-21582.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-21594.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-result-15096.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-result-15110.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-result-21292.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-result-21564.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-result-21582.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-result-21594.json" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game_agent.py" afterPath="$PROJECT_DIR$/game_agent.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/isolation/isolation.py" afterPath="$PROJECT_DIR$/isolation/isolation.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,8 +21,8 @@
       <file leaf-file-name="game_agent.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game_agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="252" column="12" lean-forward="true" selection-start-line="252" selection-start-column="12" selection-end-line="252" selection-end-column="12" />
+            <state relative-caret-position="190">
+              <caret line="247" column="0" lean-forward="true" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -55,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/isolation/isolation.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="549">
-              <caret line="343" column="0" lean-forward="true" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
+              <caret line="343" column="0" lean-forward="false" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -273,7 +262,7 @@
     <entry file="file://$PROJECT_DIR$/isolation/isolation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="549">
-          <caret line="343" column="0" lean-forward="true" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
+          <caret line="343" column="0" lean-forward="false" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -290,8 +279,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game_agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="252" column="12" lean-forward="true" selection-start-line="252" selection-start-column="12" selection-end-line="252" selection-end-column="12" />
+        <state relative-caret-position="190">
+          <caret line="247" column="0" lean-forward="true" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
           <folding />
         </state>
       </provider>
