@@ -333,6 +333,7 @@ class Board(object):
                 return self._inactive_player, move_history, "timeout"
 
             if curr_move not in legal_player_moves:
+                print(curr_move)
                 if len(legal_player_moves) > 0:
                     return self._inactive_player, move_history, "forfeit"
                 return self._inactive_player, move_history, "illegal move"

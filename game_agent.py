@@ -163,6 +163,7 @@ class MinimaxPlayer(IsolationPlayer):
         try:
             # The try/except block will automatically catch the exception
             # raised when the timer is about to expire.
+
             return self.minimax(game, self.search_depth)
 
         except SearchTimeout:
@@ -172,20 +173,27 @@ class MinimaxPlayer(IsolationPlayer):
         return best_move
 
     def MaxValue(self, game):
-        if game.utility(game.get_opponent(game.active_player)) != 0:
-            return game.utility(game.get_opponent(game.active_player))
+        # Computer Player
+        result = game.utility(game.active_player)
+        if result != 0:
+            return result
+
         moves = game.get_legal_moves()
         best_score = float('-inf')
         for move in moves:
             clone = game.forecast_move(move)
-            score = self.MaxValue(clone)
+            score = self.MinValue(clone)
             if score > best_score:
                 best_score = score
             return best_score
 
+
     def MinValue(self, game):
-        if game.utility(game.active_player) != 0:
-            return game.utility(game.active_player)
+        # Opponent
+        result = game.utility(game.active_player)
+        if result != 0:
+            return result*-1
+
         moves = game.get_legal_moves()
         best_score = float('inf')
         for move in moves:
@@ -234,12 +242,20 @@ class MinimaxPlayer(IsolationPlayer):
                 each helper function or else your agent will timeout during
                 testing.
         """
+
         if self.time_left() < self.TIMER_THRESHOLD:
             raise SearchTimeout()
 
+        if depth == 0 or game.utility(game.active_player) != 0:
+            return game.utility(game.active_player)
+        best_move = float('-inf')
+        for move in game.get_legal_moves():
+            best_move =
+
         moves = game.get_legal_moves()
-        best_move = (-1,-1)
+        best_move = moves[0] if len(moves) > 0 else (-1,-1)
         best_score = float('-inf')
+
         for move in moves:
             clone = game.forecast_move(move)
             score = self.MinValue(clone)
