@@ -35,8 +35,13 @@ def custom_score(game, player):
         The heuristic value of the current game state to the specified player.
     """
     
-    # TODO: finish this function!
-    raise NotImplementedError
+    if game.is_loser(player):
+        return float("-inf")
+
+    if game.is_winner(player):
+        return float("inf")
+
+    return float(len(game.get_legal_moves(player)))
 
 
 def custom_score_2(game, player):
@@ -173,6 +178,8 @@ class MinimaxPlayer(IsolationPlayer):
         return best_move
 
     def MaxValue(self, game):
+        #if self.time_left() < self.TIMER_THRESHOLD:
+        #    raise SearchTimeout()
         # Computer Player
         result = game.utility(game.active_player)
         if result != 0:
@@ -185,10 +192,12 @@ class MinimaxPlayer(IsolationPlayer):
             score = self.MinValue(clone)
             if score > best_score:
                 best_score = score
-            return best_score
+        return best_score
 
 
     def MinValue(self, game):
+        #if self.time_left() < self.TIMER_THRESHOLD:
+        #    raise SearchTimeout()
         # Opponent
         result = game.utility(game.active_player)
         if result != 0:
@@ -201,7 +210,30 @@ class MinimaxPlayer(IsolationPlayer):
             score = self.MaxValue(clone)
             if score < best_score:
                 best_score = score
-            return best_score
+        return best_score
+
+    def MinMaxValue(self, game, maxlv, depth):
+        # Checks timeout
+        if self.time_left() < self.TIMER_THRESHOLD:
+           raise SearchTimeout()
+        # IF Leaf node, game is over for active player
+        myPlayer = game.active_player if maxlv else game.get_opponent(game.active_player)
+        if depth <= 0:
+            return self.score(game, myPlayer)
+
+        # ELSE checks remaining nodes
+        moves = game.get_legal_moves()
+        best_score = float('-inf') if maxlv == True else float('inf')
+        for move in moves:
+            clone = game.forecast_move(move)
+            score = self.MinMaxValue(clone, not maxlv, depth-1)
+            if maxlv == True:
+                if score > best_score:
+                    best_score = score
+            else:
+                if score < best_score:
+                    best_score = score
+        return best_score
 
     def minimax(self, game, depth):
         """Implement depth-limited minimax search algorithm as described in
@@ -243,16 +275,16 @@ class MinimaxPlayer(IsolationPlayer):
                 testing.
         """
 
+        # Checks timeout
         if self.time_left() < self.TIMER_THRESHOLD:
             raise SearchTimeout()
 
         moves = game.get_legal_moves()
         best_move = moves[0] if len(moves) > 0 else (-1,-1)
         best_score = float('-inf')
-
         for move in moves:
             clone = game.forecast_move(move)
-            score = self.MinValue(clone)
+            score = self.MinMaxValue(clone, False, depth-1)
             if score > best_score:
                 best_move = move
                 best_score = score
