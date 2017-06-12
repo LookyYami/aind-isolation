@@ -2,6 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e911606e-7191-4bf8-abd5-81773eb317cd" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-22669.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-22690.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-28297.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-28458.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-28460.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-result-22669.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-result-22690.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-result-28297.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-result-28458.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/isolation-result-28460.json" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game_agent.py" afterPath="$PROJECT_DIR$/game_agent.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample_players.py" afterPath="$PROJECT_DIR$/sample_players.py" />
@@ -22,8 +32,8 @@
       <file leaf-file-name="game_agent.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game_agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="286" column="58" lean-forward="false" selection-start-line="286" selection-start-column="58" selection-end-line="286" selection-end-column="58" />
+            <state relative-caret-position="259">
+              <caret line="319" column="57" lean-forward="false" selection-start-line="319" selection-start-column="57" selection-end-line="319" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -32,8 +42,8 @@
       <file leaf-file-name="sample_players.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sample_players.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="197" column="60" lean-forward="true" selection-start-line="197" selection-start-column="60" selection-end-line="197" selection-end-column="60" />
+            <state relative-caret-position="413">
+              <caret line="287" column="39" lean-forward="false" selection-start-line="287" selection-start-column="39" selection-end-line="287" selection-end-column="39" />
               <folding>
                 <element signature="e#358#384#0" expanded="true" />
               </folding>
@@ -44,8 +54,8 @@
       <file leaf-file-name="isolation.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/isolation/isolation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="213" column="8" lean-forward="false" selection-start-line="213" selection-start-column="8" selection-end-line="213" selection-end-column="8" />
+            <state relative-caret-position="277">
+              <caret line="327" column="0" lean-forward="false" selection-start-line="327" selection-start-column="0" selection-end-line="327" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -262,28 +272,28 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/isolation/isolation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="213" column="8" lean-forward="false" selection-start-line="213" selection-start-column="8" selection-end-line="213" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sample_players.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="197" column="60" lean-forward="true" selection-start-line="197" selection-start-column="60" selection-end-line="197" selection-end-column="60" />
+        <state relative-caret-position="413">
+          <caret line="287" column="39" lean-forward="false" selection-start-line="287" selection-start-column="39" selection-end-line="287" selection-end-column="39" />
           <folding>
             <element signature="e#358#384#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/isolation/isolation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="327" column="0" lean-forward="false" selection-start-line="327" selection-start-column="0" selection-end-line="327" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/game_agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="286" column="58" lean-forward="false" selection-start-line="286" selection-start-column="58" selection-end-line="286" selection-end-column="58" />
+        <state relative-caret-position="259">
+          <caret line="319" column="57" lean-forward="false" selection-start-line="319" selection-start-column="57" selection-end-line="319" selection-end-column="57" />
           <folding />
         </state>
       </provider>

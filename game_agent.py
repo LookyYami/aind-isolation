@@ -177,48 +177,13 @@ class MinimaxPlayer(IsolationPlayer):
         # Return the best move from the last completed search iteration
         return best_move
 
-    def MaxValue(self, game):
-        #if self.time_left() < self.TIMER_THRESHOLD:
-        #    raise SearchTimeout()
-        # Computer Player
-        result = game.utility(game.active_player)
-        if result != 0:
-            return result
-
-        moves = game.get_legal_moves()
-        best_score = float('-inf')
-        for move in moves:
-            clone = game.forecast_move(move)
-            score = self.MinValue(clone)
-            if score > best_score:
-                best_score = score
-        return best_score
-
-
-    def MinValue(self, game):
-        #if self.time_left() < self.TIMER_THRESHOLD:
-        #    raise SearchTimeout()
-        # Opponent
-        result = game.utility(game.active_player)
-        if result != 0:
-            return result*-1
-
-        moves = game.get_legal_moves()
-        best_score = float('inf')
-        for move in moves:
-            clone = game.forecast_move(move)
-            score = self.MaxValue(clone)
-            if score < best_score:
-                best_score = score
-        return best_score
-
     def MinMaxValue(self, game, maxlv, depth):
         # Checks timeout
         if self.time_left() < self.TIMER_THRESHOLD:
            raise SearchTimeout()
         # IF Leaf node, game is over for active player
         myPlayer = game.active_player if maxlv else game.get_opponent(game.active_player)
-        if depth <= 0:
+        if depth <= 0 or game.utility(myPlayer) != 0:
             return self.score(game, myPlayer)
 
         # ELSE checks remaining nodes
@@ -330,8 +295,51 @@ class AlphaBetaPlayer(IsolationPlayer):
         """
         self.time_left = time_left
 
-        # TODO: finish this function!
-        raise NotImplementedError
+        best_move = (-1, -1)
+        try:
+            return self.alphabeta(game, self.search_depth, float('-inf'), float('+inf'))
+
+        except SearchTimeout:
+            pass  # Handle any actions required after timeout as needed
+
+        # Return the best move from the last completed search iteration
+        return best_move
+
+    def alphabetaMAX(self, game, depth, alpha, beta):
+        # Checks timeout
+        if self.time_left() < self.TIMER_THRESHOLD:
+           raise SearchTimeout()
+        # IF Leaf node, game is over for active player
+        myPlayer = game.active_player
+        if depth <= 0 or game.utility(myPlayer) != 0:
+            return self.score(game, myPlayer)
+        v = float('-inf')
+        moves = game.get_legal_moves()
+        for move in moves:
+            clone = game.forecast_move(move)
+            v = max(v, self.alphabetaMIN(clone, depth-1, alpha, beta))
+            if v >= beta:
+                return v
+            alpha = max(alpha, v)
+        return v
+
+    def alphabetaMIN(self, game, depth, alpha, beta):
+        # Checks timeout
+        if self.time_left() < self.TIMER_THRESHOLD:
+           raise SearchTimeout()
+        # IF Leaf node, game is over for active player
+        myPlayer = game.get_opponent(game.active_player)
+        if depth <= 0 or game.utility(myPlayer) != 0:
+            return self.score(game, myPlayer)
+        v = float('+inf')
+        moves = game.get_legal_moves()
+        for move in moves:
+            clone = game.forecast_move(move)
+            v = min(v, self.alphabetaMAX(clone, depth-1, alpha, beta))
+            if v <= alpha:
+                return v
+            beta = min(beta, v)
+        return v
 
     def alphabeta(self, game, depth, alpha=float("-inf"), beta=float("inf")):
         """Implement depth-limited minimax search with alpha-beta pruning as
@@ -380,6 +388,18 @@ class AlphaBetaPlayer(IsolationPlayer):
         """
         if self.time_left() < self.TIMER_THRESHOLD:
             raise SearchTimeout()
+        legal_moves = game.get_legal_moves()
+        best_move = legal_moves[0] if len(legal_moves) > 0 else (-1, -1)
+        best_score = float('-inf')
+        for move in legal_moves:
+            clone = game.forecast_move(move)
+            score = self.alphabetaMIN(clone, depth, alpha, beta)
+            if score > best_score:
+                best_move = move
+                best_score = score
+            alpha = max(alpha, best_score)
+            if best_score >= beta:
+                return best_move
+        return best_move
 
-        # TODO: finish this function!
-        raise NotImplementedError
+
