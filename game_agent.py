@@ -66,8 +66,18 @@ def custom_score_2(game, player):
     float
         The heuristic value of the current game state to the specified player.
     """
-    # TODO: finish this function!
-    raise NotImplementedError
+    if game.is_loser(player):
+        return float("-inf")
+
+    if game.is_winner(player):
+        return float("inf")
+
+    xa, ya = game.get_player_location(player)
+    xb, yb = game.get_player_location(game.get_opponent(player))
+
+    score = (((xa-xb)**2) + ((ya-yb)**2))**0.5
+
+    return score
 
 
 def custom_score_3(game, player):
@@ -92,9 +102,15 @@ def custom_score_3(game, player):
     float
         The heuristic value of the current game state to the specified player.
     """
-    # TODO: finish this function!
-    raise NotImplementedError
+    if game.is_loser(player):
+        return float("-inf")
 
+    if game.is_winner(player):
+        return float("inf")
+
+    player_moves = len(game.get_legal_moves(player))
+    opponent_moves = len(game.get_legal_moves(game.get_opponent(player)))
+    return float(player_moves - (2 * opponent_moves))
 
 class IsolationPlayer:
     """Base class for minimax and alphabeta agents -- this class is never
@@ -393,7 +409,7 @@ class AlphaBetaPlayer(IsolationPlayer):
         best_score = float('-inf')
         for move in legal_moves:
             clone = game.forecast_move(move)
-            score = self.alphabetaMIN(clone, depth, alpha, beta)
+            score = self.alphabetaMIN(clone, depth-1, alpha, beta)
             if score > best_score:
                 best_move = move
                 best_score = score
