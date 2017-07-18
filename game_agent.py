@@ -40,8 +40,10 @@ def custom_score(game, player):
 
     if game.is_winner(player):
         return float("inf")
-
-    return float(len(game.get_legal_moves(player)))
+    player_moves = len(game.get_legal_moves(player))
+    opponent_moves = len(game.get_legal_moves(game.get_opponent(player)))
+    aggressiveness = (game.width * game.height) - len(game.get_blank_spaces())
+    return float((player_moves*aggressiveness) - opponent_moves)
 
 
 def custom_score_2(game, player):
@@ -72,12 +74,7 @@ def custom_score_2(game, player):
     if game.is_winner(player):
         return float("inf")
 
-    xa, ya = game.get_player_location(player)
-    xb, yb = game.get_player_location(game.get_opponent(player))
-
-    score = (((xa-xb)**2) + ((ya-yb)**2))**0.5
-
-    return score
+    return float(len(game.get_legal_moves(player)))
 
 
 def custom_score_3(game, player):
@@ -108,9 +105,14 @@ def custom_score_3(game, player):
     if game.is_winner(player):
         return float("inf")
 
-    player_moves = len(game.get_legal_moves(player))
-    opponent_moves = len(game.get_legal_moves(game.get_opponent(player)))
-    return float(player_moves - (2 * opponent_moves))
+    xa, ya = game.get_player_location(player)
+    xb, yb = game.get_player_location(game.get_opponent(player))
+
+    score = (((xa - xb) ** 2) + ((ya - yb) ** 2)) ** 0.5
+    my_moves = len(game.get_legal_moves(player))
+
+    return float(my_moves + score * 0.5)
+
 
 class IsolationPlayer:
     """Base class for minimax and alphabeta agents -- this class is never
@@ -194,6 +196,27 @@ class MinimaxPlayer(IsolationPlayer):
         return best_move
 
     def MinMaxValue(self, game, maxlv, depth):
+        """Implement score auxiliary function for depth-limited minimax search algorithm
+
+        Parameters
+        ----------
+        game : isolation.Board
+            An instance of the Isolation game `Board` class representing the
+            current game state
+
+        maxlv : bool
+            Indicates if this is a max level or not
+
+        depth : int
+            Depth is an integer representing the maximum number of plies to
+            search in the game tree before aborting
+
+        Returns
+        -------
+        float
+            The best score for the algorithm
+
+        """
         # Checks timeout
         if self.time_left() < self.TIMER_THRESHOLD:
            raise SearchTimeout()
@@ -324,6 +347,30 @@ class AlphaBetaPlayer(IsolationPlayer):
         return best_move
 
     def alphabetaMAX(self, game, depth, alpha, beta):
+        """Implement max score auxiliary function for alphabeta search algorithm
+
+        Parameters
+        ----------
+        game : isolation.Board
+            An instance of the Isolation game `Board` class representing the
+            current game state
+
+        depth : int
+            Depth is an integer representing the maximum number of plies to
+            search in the game tree before aborting
+
+        alpha : float
+            Alpha limits the lower bound of search on minimizing layers
+
+        beta : float
+            Beta limits the upper bound of search on maximizing layers
+
+        Returns
+        -------
+        float
+            The score for the max level function
+        """
+
         # Checks timeout
         if self.time_left() < self.TIMER_THRESHOLD:
            raise SearchTimeout()
@@ -342,6 +389,29 @@ class AlphaBetaPlayer(IsolationPlayer):
         return v
 
     def alphabetaMIN(self, game, depth, alpha, beta):
+        """Implement min score auxiliary function for alphabeta search algorithm
+
+        Parameters
+        ----------
+        game : isolation.Board
+            An instance of the Isolation game `Board` class representing the
+            current game state
+
+        depth : int
+            Depth is an integer representing the maximum number of plies to
+            search in the game tree before aborting
+
+        alpha : float
+            Alpha limits the lower bound of search on minimizing layers
+
+        beta : float
+            Beta limits the upper bound of search on maximizing layers
+
+        Returns
+        -------
+        float
+            The score for the min level function
+        """
         # Checks timeout
         if self.time_left() < self.TIMER_THRESHOLD:
            raise SearchTimeout()
