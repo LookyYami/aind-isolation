@@ -42,7 +42,7 @@ def custom_score(game, player):
         return float("inf")
     player_moves = len(game.get_legal_moves(player))
     opponent_moves = len(game.get_legal_moves(game.get_opponent(player)))
-    aggressiveness = (game.width * game.height) - len(game.get_blank_spaces())
+    aggressiveness = ((game.width * game.height) - len(game.get_blank_spaces()))/10
     return float((player_moves*aggressiveness) - opponent_moves)
 
 
